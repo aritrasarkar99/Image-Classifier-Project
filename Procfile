@@ -1,1 +1,1 @@
-web: gunicorn app: imguploader
+web: gunicorn app:app
