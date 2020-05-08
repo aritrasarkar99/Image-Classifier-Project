@@ -18,7 +18,7 @@ def upload():
                 filename = image.filename
                 ext  = filename.rsplit(".",1)[1]
                 ext = ext.lower()
-                p = "templates\\uploads\\"+"uploaded_img"+"."+ext
+                p = "templates/uploads/"+"uploaded_img"+"."+ext
                 image.save(p)
                 return redirect(request.url)
 
