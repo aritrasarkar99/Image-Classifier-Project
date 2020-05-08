@@ -1,0 +1,63 @@
+{% extends "head.html" %}
+
+    {% block content %}
+    <title>Image-Clasifier</title>
+
+    <script>
+            function fileValidator(){
+            var image = document.getElementById('image');
+            var fileName = image.value;
+            var allowedExt = /(\.jpg)/i;
+            if(!allowedExt.exec(fileName)){
+                alert("This type of file is not allowed. Upload only JPG image !!");
+                image.value = "";
+                return false
+            }
+            else{
+                if(image.files && image.files[0]){
+                    var reader = new FileReader;
+                    reader.onload = function(e){
+                        //document.getElementById("imagePreview").innerHTML = '<img src="'+e.target.result+'"class="image-section" width="300" height="300">'
+                        var pic = document.getElementById('uploaded_image');
+                        var text = document.getElementById('defaultText');
+                        text.style.display = 'none';
+                        pic.style.display = 'block'
+                        pic.setAttribute('src',e.target.result);
+                    };
+                    reader.readAsDataURL(image.files[0]);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-2 ">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <h1 class="display-4">IMAGE CLASSIFIER</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <div id="imagePreview" class="imagePreview">
+                    <img src="" alt="Image Preview" class="image-section" id="uploaded_image">
+                    <span id="defaultText" class="default-text" style="font-family: comic sans ms;">Image Preview</span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 5rem;">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <form action="/img-upload" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="image" id="image"  onchange="return fileValidator()">
+                    <button type="submit" class="btn btn-success">UPLOAD</button>
+                </form>
+            </div>
+        </div>
+    
+    </div>
+    
+    
+    
+    
+
+    {% endblock %}
