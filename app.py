@@ -6,7 +6,7 @@ import uuid
 app = Flask(__name__)
 
 # FILE_PATH = os.environ.get("FILE_PATH")
-FILE_PATH = "/templates/uploads/"
+FILE_PATH = "/app/templates/uploads/"
 
 @app.route("/")
 def home():
