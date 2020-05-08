@@ -26,7 +26,7 @@ def upload():
                 filename = id.hex + "." + ext  ######### FileName of uploaded file ############
                 # basepath = os.path.dirname(__file__)
                 # file_path = os.path.join(basepath,'templates','uploads',secure_filename(filename))
-                file_path = os.path.join(FILE_PATH,secure_filename(filename))
+                file_path = os.path.join(str(FILE_PATH),secure_filename(filename))
                 print(file_path)
                 image.save(file_path)
                 return redirect(request.url)
