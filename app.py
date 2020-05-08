@@ -6,7 +6,6 @@ import uuid
 app = Flask(__name__)
 
 # FILE_PATH = os.environ.get("FILE_PATH")
-FILE_PATH = "/app/templates/uploads/"
 
 @app.route("/")
 def home():
@@ -25,9 +24,8 @@ def upload():
                 filename = image.filename
                 ext =  filename.rsplit(".",1)[1]
                 filename = id.hex + "." + ext  ######### FileName of uploaded file ############
-                # basepath = os.path.dirname(__file__)
-                # file_path = os.path.join(basepath,'templates','uploads',secure_filename(filename))
-                file_path = os.path.join(str(FILE_PATH),secure_filename(filename))
+                basepath = os.path.dirname(__file__)
+                file_path = os.path.join(basepath,'templates','uploads',secure_filename(filename))
                 print(file_path)
                 image.save(file_path)
                 return redirect(request.url)
